@@ -1,0 +1,238 @@
+{% extends 'master/layout.html' %}
+
+{% block title %}Enquiry Form{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="form-card mx-auto" style="max-width: 800px; position: relative; display: flex; flex-direction: column; height: 100%;">
+        <h3 class="form-title">Enquiry Form</h3>
+
+        {% if success %}
+        <div class="alert alert-success text-center mt-3" role="alert">
+            ✅ Enquiry submitted successfully!
+        </div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data" style="flex: 1; display: flex; flex-direction: column;">
+            {% csrf_token %}
+            <div class="form-grid" style="flex: 1;">
+                <p>
+                    <label for="id_enquiry_no"><strong>Enquiry No:</strong></label>
+                    {{ form.enquiry_no }}
+                </p>
+
+                <p>
+                    {{ form.student_name.label_tag }}<br>
+                    {{ form.student_name }}
+                    {% if form.student_name.errors %}
+                    <br><span style="color:red;">{{ form.student_name.errors }}</span>
+                    {% endif %}
+                </p>
+
+                <p>
+                    {{ form.dob.label_tag }}<br>
+                    {{ form.dob }}
+                    {% if form.dob.errors %}
+                    <br><span style="color:red;">{{ form.dob.errors }}</span>
+                    {% endif %}
+                </p>
+
+                <p>
+                    {{ form.parent_name.label_tag }}<br>
+                    {{ form.parent_name }}
+                    {% if form.parent_name.errors %}
+                    <br><span style="color:red;">{{ form.parent_name.errors }}</span>
+                    {% endif %}
+                </p>
+
+                <p>
+                    {{ form.parent_phone.label_tag }}<br>
+                    {{ form.parent_phone }}
+                    {% if form.parent_phone.errors %}
+                    <br><span style="color:red;">{{ form.parent_phone.errors }}</span>
+                    {% endif %}
+                </p>
+
+                <p>
+                    {{ form.course_type.label_tag }}<br>
+                    {{ form.course_type }}
+                    {% if form.course_type.errors %}
+                    <br><span style="color:red;">{{ form.course_type.errors }}</span>
+                    {% endif %}
+                </p>
+
+                <p>
+                    {{ form.course.label_tag }}<br>
+                    {{ form.course }}
+                    {% if form.course.errors %}
+                    <br><span style="color:red;">{{ form.course.errors }}</span>
+                    {% endif %}
+                </p>
+
+                <div id="div_10th">
+                    <p>
+                        {{ form.percentage_10th.label_tag }}<br>
+                        {{ form.percentage_10th }}
+                        {% if form.percentage_10th.errors %}
+                        <br><span style="color:red;">{{ form.percentage_10th.errors }}</span>
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div id="div_12th">
+                    <p>
+                        {{ form.percentage_12th.label_tag }}<br>
+                        {{ form.percentage_12th }}
+                        {% if form.percentage_12th.errors %}
+                        <br><span style="color:red;">{{ form.percentage_12th.errors }}</span>
+                        {% endif %}
+                    </p>
+                </div>
+
+                <p>
+                    {{ form.address.label_tag }}<br>
+                    {{ form.address }}
+                    {% if form.address.errors %}
+                    <br><span style="color:red;">{{ form.address.errors }}</span>
+                    {% endif %}
+                </p>
+
+                <p>
+                    {{ form.email.label_tag }}<br>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                    <br><span style="color:red;">{{ form.email.errors }}</span>
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="mt-4" style="display: flex; justify-content: flex-end; width: 100%;">
+                <button type="submit" class="btn btn-primary btn-lg no-print">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f0f2f5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-left: 91px;
+    }
+
+    .form-card {
+        background: #ffffff;
+        padding: 21px 23px;
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        position: relative;
+    }
+
+    .form-title {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 0px;
+        text-transform: uppercase;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 0px 26px;
+        margin-top: 11px;
+    }
+
+    .btn {
+        font-size: 13px;
+        font-weight: 600;
+        padding: 10px 18px;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #0274ee;
+        color: white;
+        padding: 2px;
+        font-size: 10px;
+        border-radius: 4px;
+        margin-top: 10px;
+        margin-bottom: -10px;
+    }
+
+        .btn-primary:hover {
+            background-color: #025fc1;
+        }
+
+    .alert {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 12px;
+        border-radius: 6px;
+        border: 1px solid #c3e6cb;
+        font-size: 14px;
+        margin-top: 24px;
+    }
+
+    textarea#id_address {
+        height: 60px !important;
+    }
+
+    @media print {
+        .btn,
+        .alert,
+        .photo-upload input,
+        .edit-icon,
+        .no-print,
+        .sidebar,
+        .topbar {
+            display: none !important;
+        }
+
+        body {
+            background: white;
+        }
+
+        .form-card {
+            box-shadow: none;
+            border: none;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-title {
+            font-size: 16pt;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .form-card {
+            padding: 30px 20px;
+        }
+
+        .form-title {
+            font-size: 22px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+
+        .form-grid {
+            gap: 12px;
+        }
+    }
+</style>
+{% endblock %}

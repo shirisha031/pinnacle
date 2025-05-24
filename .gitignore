@@ -1,0 +1,9 @@
+ECHO is on.
+env/ 
+.vs/ 
+__pycache__/ 
+*.py[cod] 
+*.sqlite3 
+*.log 
+.env 
+*/migrations/ 
